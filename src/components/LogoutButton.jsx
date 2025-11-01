@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import logout from "../assets/icons/logout.png";
-import "./Header.css";
+import "./LogoutBtn.css";
 
 export default function LogoutButton() {
   const navigate = useNavigate();
@@ -14,13 +14,7 @@ export default function LogoutButton() {
 
   return (
     <button className="logout-button" onClick={handleLogout}>
-      <img src={logout} alt="Logout"
-        style={{
-          width: "36px",
-          height: "36px",
-          background: "red",
-          borderRadius: "50%",
-        }} />
+      <img src={logout} alt="Logout" />
     </button>
   );
 }
