@@ -13,7 +13,7 @@ function Footer() {
         </div>
 
         <nav className="footer-nav" aria-label="Footer Navigation">
-          <h4>Navigation</h4>
+          <h4>Explore</h4>
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/discover">Discover</Link></li>
@@ -24,16 +24,15 @@ function Footer() {
         </nav>
 
         <div className="footer-contact">
-          <h4>Kontakt</h4>
+          <h4>Contact</h4>
           <ul>
-            <li>Email: <a href="mailto:hello@gamebase.example">hello@gamebase.example</a></li>
             <li><a href="/contact">Kontaktformular</a></li>
             <li><Link to="/impressum">Impressum</Link></li>
           </ul>
         </div>
 
         <div className="footer-social">
-          <h4>Folge uns</h4>
+          <h4>Follow us</h4>
           <ul>
             <li><a href="https://github.com/YourRepo" target="_blank" rel="noreferrer">GitHub</a></li>
             <li><a href="https://instagram.com/YourProfile" target="_blank" rel="noreferrer">Instagram</a></li>

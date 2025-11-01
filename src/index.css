@@ -7,6 +7,9 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* Light Mode (Standard) */
@@ -48,11 +51,19 @@ html {
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 a {
@@ -74,7 +85,8 @@ body {
 
 /* Platz für die fixe Header-Leiste schaffen */
 main {
-  padding-top: 64px; /* Höhe des Headers kompensieren */
+  padding-top: 64px;
+  flex: 1; /* Höhe des Headers kompensieren */
 }
 
 h1 {
@@ -103,39 +115,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-/* Media Query wird nicht mehr benötigt - Theme wird via data-attribute gesteuert */
-.logout-button {
-  all: unset; /* Alles zurücksetzen, damit keine globalen Styles greifen */
-  background: var(--button-bg);
-  color: var(--text-color);
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
-  box-sizing: border-box;
+.site-footer {
+  margin-top: auto;
+  width: 100%;
 }
-
-.logout-button:hover {
-  background: var(--button-hover-bg);
-  transform: translateY(-1px);
-}
-
-.logout-button img {
-  width: 2rem;
-  height: 2rem;
-  object-fit: contain;
-  display: block;
-  margin: 0;
-  padding: 0;
-  border: none;
-}
-
-.logout-button:focus {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 2px;
-}
-

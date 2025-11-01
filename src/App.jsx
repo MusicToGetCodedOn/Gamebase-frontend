@@ -21,9 +21,11 @@ function AppContent() {
         ) : (
           <Outlet />
         )}
+
       </main>
       <Footer />
     </>
+
   );
 }
 
