@@ -4,6 +4,7 @@ import "./App.css";
 import { AuthProvider, useAuth } from "./context/AuthContext.jsx";
 import Header from "./components/Header.jsx";
 import LoginButton from "./components/LoginButton.jsx";
+import Footer from "./components/Footer.jsx";
 
 function AppContent() {
   const { token } = useAuth();
@@ -21,6 +22,7 @@ function AppContent() {
           <Outlet />
         )}
       </main>
+      <Footer />
     </>
   );
 }
