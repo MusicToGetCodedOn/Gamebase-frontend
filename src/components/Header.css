@@ -191,8 +191,8 @@
   background: var(--button-bg);
   border: 1px solid var(--border-color);
   border-radius: 50%;
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 2.5rem;
+  height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;

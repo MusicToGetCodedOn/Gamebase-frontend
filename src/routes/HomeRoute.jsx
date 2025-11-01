@@ -89,7 +89,7 @@ function HomeRoute() {
 
   return (
     <div>
-      <h1 style={{ textAlign: "center", color: "var(--text-color)" }}>Welcome to BlaBlaBla</h1>
+      <h1 style={{ textAlign: "center", color: "var(--text-color)" }}>Welcome to GameBase</h1>
       <Herosection />
       {loading ? (
         <p style={{ textAlign: "center" }}>Loading games...</p>
