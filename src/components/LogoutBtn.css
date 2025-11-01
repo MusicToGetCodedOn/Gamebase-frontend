@@ -2,8 +2,8 @@
   all: unset; /* Alles zurücksetzen, damit keine globalen Styles greifen */
   background: var(--button-bg);
   color: var(--text-color);
-  width: 36px;
-  height: 36px;
+  width: 2.75rem;
+  height: 2.75rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -11,7 +11,6 @@
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
   box-sizing: border-box;
-  outline: 2px solid lime
 }
 
 .logout-button:hover {
@@ -20,8 +19,8 @@
 }
 
 .logout-button img {
-  width: 18px;
-  height: 18px;
+  width: 2rem;
+  height: 2rem;
   object-fit: contain;
   display: block;
   margin: 0;
