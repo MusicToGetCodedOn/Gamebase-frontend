@@ -85,6 +85,7 @@ h1 {
 button {
   border-radius: 8px;
   border: 1px solid var(--button-border);
+  padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -103,3 +104,38 @@ button:focus-visible {
 }
 
 /* Media Query wird nicht mehr benötigt - Theme wird via data-attribute gesteuert */
+.logout-button {
+  all: unset; /* Alles zurücksetzen, damit keine globalen Styles greifen */
+  background: var(--button-bg);
+  color: var(--text-color);
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  box-sizing: border-box;
+}
+
+.logout-button:hover {
+  background: var(--button-hover-bg);
+  transform: translateY(-1px);
+}
+
+.logout-button img {
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.logout-button:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
