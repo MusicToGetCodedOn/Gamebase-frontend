@@ -24,7 +24,6 @@ export default function LogoutButton() {
   return (
     <button className="theme-toggle" onClick={handleLogout}>
       <img
-        className="logout-icon"
         src={logout}
         alt="Logout"
       />
