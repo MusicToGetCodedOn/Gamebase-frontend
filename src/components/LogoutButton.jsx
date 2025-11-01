@@ -22,7 +22,7 @@ export default function LogoutButton() {
   };
 
   return (
-    <button className="theme-toggle" onClick={handleLogout}>
+    <button className="logout-button" onClick={handleLogout}>
       <img
         src={logout}
         alt="Logout"
