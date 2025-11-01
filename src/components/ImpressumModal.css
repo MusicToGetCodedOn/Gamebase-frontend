@@ -1,0 +1,133 @@
+.impressum-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5000;
+  animation: fadeIn 0.25s ease;
+}
+
+.impressum-modal {
+  background: var(--card-bg);
+  color: var(--text-color);
+  width: 90%;
+  max-width: 800px;
+  max-height: 85vh;
+  overflow-y: auto;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+  position: relative;
+  animation: slideUp 0.3s ease;
+}
+
+.impressum-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0.5rem 0;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.close-btn:hover {
+  transform: scale(1.15);
+}
+
+.impressum-content {
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.impressum-content h1 {
+  font-size: 1.3rem;
+  color: var(--accent-color);
+  margin-top: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.4rem;
+}
+
+.impressum-content h2 {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+
+.impressum-content a {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+.impressum-generator {
+  font-size: 0.85rem;
+  color: var(--text-color-secondary);
+  margin-top: 1.5rem;
+  text-align: right;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive: smaller modal on phones */
+@media (max-width: 700px) {
+  .impressum-modal {
+    max-width: 640px;
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .impressum-content h1 {
+    font-size: 1.15rem;
+  }
+
+  .impressum-content h2 {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .impressum-overlay {
+    align-items: flex-start;
+    padding-top: 4.5rem; /* keep modal below header */
+  }
+
+  .impressum-modal {
+    width: calc(100% - 2rem);
+    max-width: none;
+    max-height: calc(100vh - 6rem);
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .close-btn {
+    top: 8px;
+    right: 10px;
+    font-size: 1.2rem;
+  }
+
+  .impressum-content {
+    font-size: 0.92rem;
+  }
+}
