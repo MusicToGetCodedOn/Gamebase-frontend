@@ -10,7 +10,7 @@
   background-color: var(--bg-color);
   position: fixed;
   top: 0;
-  left: 0; 
+  left: 0;
   right: 0;
   z-index: 10;
   box-shadow: 0 2px 6px var(--shadow);
@@ -148,7 +148,6 @@
   background: var(--button-bg);
   color: var(--text-color-nav);
   transition: all 0.18s ease;
-  /* Match the profile avatar size/shape: 40x40 circular button */
   width: 40px;
   height: 40px;
   min-width: 40px;
@@ -157,12 +156,20 @@
   align-items: center;
   justify-content: center;
   font-size: 0.95rem;
-  border-radius: 50%;
   cursor: pointer;
 }
 .logout-button:hover {
   background: var(--button-hover-bg);
   transform: translateY(-1px);
+}
+.logout-button img {
+  width: 2rem;
+  height: 2rem;
+  display: block;
+  object-fit: contain;
+  border: none;
+  padding: 0;
+  outline: none;
 }
 
 .header button {
@@ -198,7 +205,6 @@
   color: var(--text-color-nav);
 }
 
-
 .theme-toggle:focus,
 .theme-toggle:focus-visible,
 .theme-toggle:active {
@@ -223,8 +229,6 @@
   border: none;
   padding: 0;
   outline: none;
-  color: var(--text-color-nav);
-  
 }
 
 .theme-toggle-icon:focus-visible,
@@ -292,14 +296,12 @@
     padding: 0.75rem 1rem;
     font-size: 1.1rem;
     width: 80%;
-    
   }
-  
 
   .theme-toggle {
     margin-top: 0;
   }
-  
+
   .profile-button {
     margin-top: 0;
   }
@@ -320,7 +322,7 @@
   .header button {
     font-size: 0.95rem;
     padding: 0.5rem 0.9rem;
-    color:var(--text-color-nav) ;
+    color: var(--text-color-nav);
   }
 }
 
@@ -345,4 +347,3 @@
   transform: scale(1.1);
   box-shadow: 0 0 8px rgba(128, 90, 213, 0.6); /* leicht violettes Glow */
 }
-
