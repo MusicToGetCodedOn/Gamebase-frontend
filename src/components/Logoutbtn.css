@@ -1,36 +1,34 @@
 .logout-button {
-	background: var(--button-bg);
-	color: var(--text-color-nav);
-	transition: all 0.18s ease;
-	width: 40px;
-	height: 40px;
-	min-width: 40px;
-	padding: 0;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 0.95rem;
-	border-radius: 50%;
-	cursor: pointer;
+  all: unset; /* Alles zurücksetzen, damit keine globalen Styles greifen */
+  background: var(--button-bg);
+  color: var(--text-color);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  box-sizing: border-box;
 }
 
 .logout-button:hover {
-	background: var(--button-hover-bg);
-	transform: translateY(-1px);
+  background: var(--button-hover-bg);
+  transform: translateY(-1px);
 }
 
 .logout-button img {
-	width: 30px;
-	height: 30px;
-	display: block;
-	object-fit: contain;
-	border: none;
-	padding: 0;
-	outline: none;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
-/* Optional: ensure focus styles for accessibility */
 .logout-button:focus {
-	outline: 2px solid var(--border-color);
-	outline-offset: 2px;
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
 }
