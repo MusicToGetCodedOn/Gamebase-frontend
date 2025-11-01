@@ -27,16 +27,6 @@
   padding: 0.5rem;
   z-index: 20;
 }
-
-.hamburger-line {
-  width: 1.75rem;
-  height: 0.2rem;
-  background-color: var(--text-color-nav);
-  transition: all 0.3s ease;
-  border-radius: 2px;
-}
-
-/* Hamburger Animation beim Öffnen */
 .hamburger-line.open:nth-child(1) {
   transform: rotate(45deg) translate(0.5rem, 0.5rem);
 }
@@ -143,33 +133,6 @@
 .profile-avatar img:hover {
   transform: scale(1.05);
   box-shadow: 0 0 8px rgba(128, 90, 213, 0.35); /* subtle glow */
-}
-.logout-button {
-  background: var(--button-bg);
-  color: var(--text-color-nav);
-  transition: all 0.18s ease;
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-  padding: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.95rem;
-  cursor: pointer;
-}
-.logout-button:hover {
-  background: var(--button-hover-bg);
-  transform: translateY(-1px);
-}
-.logout-button img {
-  width: 30px;
-  height: 30px;
-  display: block;
-  object-fit: contain;
-  border: none;
-  padding: 0;
-  outline: none;
 }
 
 .header button {
