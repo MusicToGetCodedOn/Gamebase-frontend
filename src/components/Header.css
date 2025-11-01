@@ -199,7 +199,6 @@
   cursor: pointer;
   transition: all 0.3s ease;
   outline: none;
-  margin-top: 0.5rem;
   color: var(--text-color-nav);
 }
 
