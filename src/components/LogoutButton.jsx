@@ -14,7 +14,13 @@ export default function LogoutButton() {
 
   return (
     <button className="logout-button" onClick={handleLogout}>
-      <img src={logout} alt="Logout" />
+      <img src={logout} alt="Logout"
+        style={{
+          width: "36px",
+          height: "36px",
+          background: "red",
+          borderRadius: "50%",
+        }} />
     </button>
   );
 }
