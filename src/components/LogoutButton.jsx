@@ -22,7 +22,7 @@ export default function LogoutButton() {
   };
 
   return (
-    <button className="logout-button" onClick={handleLogout}>
+    <button className="profile-avatar" onClick={handleLogout}>
       <img src={logout} alt="Logout" />
     </button>
   );
