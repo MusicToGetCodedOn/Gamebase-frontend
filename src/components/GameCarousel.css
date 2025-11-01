@@ -1,0 +1,65 @@
+.game-carousel {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  /* animate from 0 to -50% so duplicated content loops */
+  animation: scroll-left var(--carousel-duration, 20s) linear infinite;
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  width: 220px; /* base card width; responsive rules below will adjust */
+}
+
+/* Pause on hover for easier reading */
+.game-carousel:hover .carousel-track {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .carousel-item {
+    width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-item {
+    width: 160px;
+  }
+
+  .carousel-track {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .carousel-item {
+    width: 140px;
+  }
+
+  .game-carousel {
+    padding: 0.25rem 0;
+  }
+}
+
+/* Ensure duplicated content sits inline without line breaks */
+.carousel-track > .carousel-item:nth-child(n) {
+  display: inline-block;
+}

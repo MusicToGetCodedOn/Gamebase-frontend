@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import "./Header.css";
+import HeaderSearch from "./HeaderSearch";
 import LoginButton from "./LoginButton";
 import { useAuth } from "../context/AuthContext";
 import LogoutButton from "./LogoutButton";
@@ -71,6 +72,7 @@ export default function Header() {
 
       {/* nav-right bleibt immer oben rechts sichtbar */}
       <div className="nav-right">
+        <HeaderSearch />
         <ThemeToggle />
         {!token ? (
           <LoginButton />

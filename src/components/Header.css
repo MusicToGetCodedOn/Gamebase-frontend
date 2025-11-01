@@ -38,7 +38,7 @@
 
 /* Hamburger Animation beim Öffnen */
 .hamburger-line.open:nth-child(1) {
-  transform: rotate(45deg) translate(0.5rem, 0.5rem);
+  transform: rotate(45deg) translate(0.4rem, 0.5rem);
 }
 
 .hamburger-line.open:nth-child(2) {
@@ -46,7 +46,7 @@
 }
 
 .hamburger-line.open:nth-child(3) {
-  transform: rotate(-45deg) translate(0.5rem, -0.5rem);
+  transform: rotate(-45deg) translate(0.4rem, -0.5rem);
 }
 
 /* Navigation Container */
@@ -144,33 +144,9 @@
   transform: scale(1.05);
   box-shadow: 0 0 8px rgba(128, 90, 213, 0.35); /* subtle glow */
 }
-.header button.logout-button {
-  all: unset;
-  background: var(--button-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 50%;
-  width: 2.5rem;
-  height: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
 
-.header button.logout-button:hover {
-  background: var(--button-hover-bg);
-  transform: translateY(-1px);
-}
 
-.header button.logout-button img {
-  width: 1.2rem;
-  height: 1.2rem;
-  object-fit: contain;
-}
-
-.header .container-item,
-.header .theme-toggle {
+.header button {
   border: none;
   background-color: var(--button-bg);
   color: var(--text-color-nav);
@@ -192,7 +168,7 @@
   border: 1px solid var(--border-color);
   border-radius: 50%;
   width: 2.5rem;
-  height: 5rem;
+  height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;

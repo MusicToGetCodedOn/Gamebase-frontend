@@ -3,10 +3,11 @@ import Herosection from "../components/Herosection.jsx";
 import LoadMoreButton from "../components/LoadMoreButton.jsx";
 import { useAuth } from "../context/AuthContext.jsx";
 import { useEffect, useState } from "react";
+import GameCarousel from "../components/GameCarousel.jsx";
 
 
 function HomeRoute() {
-  const { token } = useAuth(); 
+  const { token } = useAuth();
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -58,7 +59,7 @@ function HomeRoute() {
 
     try {
       setLoadingMore(true);
-      const res = await fetch(`${VITE_API_BASE_URL}/api/games`, {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/games`, {
         method: "POST",
         headers: {
           "Client-ID": import.meta.env.VITE_TWITCH_CLIENT_ID,
@@ -95,8 +96,10 @@ function HomeRoute() {
         <p style={{ textAlign: "center" }}>Loading games...</p>
       ) : (
         <>
+          <h5 style={{ color: "var(--text-color)" }}>Top Rated Games</h5>
+          <GameCarousel games={games} duration={25} />
           <GameGrid games={games} />
-          <LoadMoreButton 
+          <LoadMoreButton
             onClick={loadMoreGames}
             loading={loadingMore}
             hasMore={hasMore}
