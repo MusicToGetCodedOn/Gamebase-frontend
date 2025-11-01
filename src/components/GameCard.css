@@ -1,0 +1,72 @@
+.game-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.game-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px var(--shadow);
+  overflow: hidden;
+  width: 200px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px var(--shadow);
+}
+
+/* Cover-Bereich */
+.game-card-cover {
+  width: 100%;
+  aspect-ratio: 3/4; /* Hochformat */
+  object-fit: cover;
+  background: var(--border-color);
+}
+
+/* Fallback, falls kein Bild vorhanden */
+.game-card-placeholder {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background-color: var(--border-color);
+  color: var(--text-color-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+/* Info-Bereich */
+.game-card-info {
+  padding: 0.9rem 1rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.game-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.game-card-genre {
+  font-size: 0.85rem;
+  color: var(--text-color-secondary);
+}
+
+.game-card-rating {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--accent-color);
+  margin-top: 0.2rem;
+}

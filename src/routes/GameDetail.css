@@ -1,0 +1,93 @@
+.game-detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 2rem;
+  color: var(--text-color);
+}
+
+.game-detail__cover {
+  width: 300px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px var(--shadow);
+}
+
+.game-detail__info {
+  max-width: 600px;
+}
+
+.game-detail__genre {
+  font-size: 1rem;
+  color: var(--text-color-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.game-detail__rating {
+  color: var(--accent-color);
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.game-detail__description {
+  line-height: 1.6;
+  color: var(--text-color-secondary);
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 2rem;
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: var(--link-hover-color);
+}
+/* --- Hintergrund-Styling für Atmosphäre --- */
+.game-detail {
+  position: relative;
+  min-height: 90vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: var(--text-color);
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Container für eigentlichen Inhalt */
+.game-detail__content {
+  display: flex;
+  gap: 3rem;
+  max-width: 1000px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Bestehende Klassen leicht angepasst */
+.game-detail__cover {
+  width: 280px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px var(--shadow);
+  flex-shrink: 0;
+}
+
+.game-detail__info h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.game-detail__publisher,
+.game-detail__release {
+  font-size: 1rem;
+  color: var(--text-color-secondary);
+  margin-bottom: 0.5rem;
+}

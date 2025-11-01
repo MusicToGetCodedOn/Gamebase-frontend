@@ -1,0 +1,106 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Light Mode (Standard) */
+[data-theme="light"] {
+  --bg-color: #ffffff;
+  --text-color: #1a1a1a;
+  --text-color-secondary: #555555;
+  --border-color: #e2e2e2;
+  --button-bg: #7b4dff;
+  --button-hover-bg: #693bff;
+  --button-border: #7b4dff;
+  --link-color: #6a3cff;
+  --link-hover-color: #5227e5;
+  --accent-color: #a47cff;
+  --card-bg: #f9f7ff;
+  --shadow: 0 4px 8px rgba(106, 60, 255, 0.1);
+  --text-color-nav: #ffffff;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+  --bg-color: #0f0f14;
+  --text-color: #ffffff;
+  --text-color-secondary: #bdbdbd;
+  --border-color: #2b2b2b;
+  --button-bg: #7b4dff;
+  --button-hover-bg: #946fff;
+  --button-border: #946fff;
+  --link-color: #b490ff;
+  --link-hover-color: #c3a8ff;
+  --accent-color: #9d84ff;
+  --card-bg: #1a1a23;
+  --shadow: 0 4px 10px rgba(155, 105, 255, 0.25);
+  --text-color-nav: #ffffff;
+}
+
+html {
+  color-scheme: light dark;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+a {
+  font-weight: 500;
+  color: var(--link-color);
+  text-decoration: inherit;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: var(--link-hover-color);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  display: block; /* Entfernt zentrierendes Flex-Layout */
+}
+
+/* Platz für die fixe Header-Leiste schaffen */
+main {
+  padding-top: 64px; /* Höhe des Headers kompensieren */
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid var(--button-border);
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--button-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+button:hover {
+  background-color: var(--button-hover-bg);
+  border-color: var(--accent-color);
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Media Query wird nicht mehr benötigt - Theme wird via data-attribute gesteuert */

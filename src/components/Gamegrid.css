@@ -1,0 +1,34 @@
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Tablet (bis 1024px) */
+@media (max-width: 1024px) {
+  .game-grid {
+    gap: 1.5rem;
+    padding: 1.5rem;
+    max-width: 900px;
+  }
+}
+
+/* Tablet klein (bis 768px) */
+@media (max-width: 768px) {
+  .game-grid {
+    gap: 1.25rem;
+    padding: 1rem;
+  }
+}
+
+/* Handy (bis 480px) */
+@media (max-width: 480px) {
+  .game-grid {
+    gap: 1rem;
+    padding: 0.75rem;
+  }
+}
