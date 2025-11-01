@@ -150,7 +150,7 @@
   transition: all 0.18s ease;
   /* Match sizing and alignment of other header buttons */
   padding: 0.5rem 0.9rem;
-  height: 2.75rem;
+ height: auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;

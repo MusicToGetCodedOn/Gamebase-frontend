@@ -23,7 +23,7 @@ export default function LogoutButton() {
 
   return (
     <button className="logout-button" onClick={handleLogout}>
-      <img src={logout} alt="Logout" width="24" height="24" />
+      <img src={logout} alt="Logout" />
     </button>
   );
 }
