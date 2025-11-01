@@ -163,8 +163,8 @@
   transform: translateY(-1px);
 }
 .logout-button img {
-  width: 2rem;
-  height: 2rem;
+  width: 30px;
+  height: 30px;
   display: block;
   object-fit: contain;
   border: none;
