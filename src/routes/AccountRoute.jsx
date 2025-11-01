@@ -17,7 +17,7 @@ function AccountRoute() {
   }
 
   if (!profile) {
-    return <p>Profil wird geladen...</p>;
+    return <p>Profil wird  geladen...</p>;
   }
 
   return (
