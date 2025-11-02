@@ -1,4 +1,4 @@
-export async function fetchGames(limit = 10, offset = 0) {
+export async function fetchTopRatedGames(limit = 10, offset = 0) {
   try {
     const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/games`, {
       method: "POST",

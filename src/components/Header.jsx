@@ -52,7 +52,7 @@ export default function Header() {
           </button>
           <button
             className="container-item"
-            onClick={() => handleNavigate("/trending")}
+            onClick={() => handleNavigate("/popular")}
           >
             Trending
           </button>

@@ -1,31 +1,17 @@
-import React, { useEffect, useState } from "react";
+// 📁 src/components/GameCarousel.jsx
+import React from "react";
 import GameCard from "./GameCard";
 import "./GameCarousel.css";
-import { fetchGames } from "../utils/fetchgames";
 
+function GameCarousel({ games = [], duration = 20 }) {
+  if (!games || games.length === 0) return null;
 
-function GameCarousel({ duration = 10 }) {
-    const [games, setGames] = useState([]);
-
-    useEffect(() => {
-        async function loadGames() {
-            const fetchedGames = await fetchGames(10, 0);
-            setGames(fetchedGames);
-        }
-        loadGames();
-    }, []);
-
-    if (!games || games.length === 0) return null;
-
-  // Duplicate the items to create a seamless loop
+  // Duplizieren für Endlos-Scroll-Effekt
   const items = [...games, ...games];
 
   const style = {
-    // CSS variable used by the stylesheet to set animation duration
     ["--carousel-duration"]: `${duration}s`,
   };
-  
-  
 
   return (
     <div className="game-carousel" style={style} aria-label="Game carousel">
@@ -34,9 +20,9 @@ function GameCarousel({ duration = 10 }) {
           <div className="carousel-item" key={`${game.id}-${idx}`}>
             <GameCard
               id={game.id}
-              cover={game.cover?.url.replace('t_thumb', 't_cover_small')}
+              cover={game.cover?.url?.replace("t_thumb", "t_cover_big")}
               name={game.name}
-              genre={game.genre}
+              genre={game.genres?.[0]?.name || "Unknown"}
               rating={game.rating}
             />
           </div>

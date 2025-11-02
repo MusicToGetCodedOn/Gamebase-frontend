@@ -29,7 +29,7 @@ const router = createBrowserRouter([
         element: <DiscoverRoute />
       },
       {
-        path: '/trending',
+        path: '/popular',
         element: <TrendingRoute />
       },
       {
