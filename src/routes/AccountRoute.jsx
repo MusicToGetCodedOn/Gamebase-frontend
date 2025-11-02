@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import LogoutButton from "../components/LogoutButton";
 import { fetchPopularGames } from "../utils/fetchPopularGames.js";
 import "./AccountRoute.css";
+import { getSavedList, removeGameFromList } from "../utils/savedLists";
 
 function AccountRoute() {
   const { token, profile } = useAuth();
@@ -11,28 +12,21 @@ function AccountRoute() {
 
   const [tracked, setTracked] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [saved, setSaved] = useState([]);
 
+
+
+  // load saved "Currently playing" list from localStorage (per user)
   useEffect(() => {
-    if (!token) return;
-    let mounted = true;
-    async function loadTracked() {
-      try {
-        setLoading(true);
-        // placeholder: use popular games as "tracked" list until real endpoint exists
-        const data = await fetchPopularGames(12, 0);
-        if (!mounted) return;
-        setTracked(Array.isArray(data) ? data : []);
-      } catch (err) {
-        console.error("Fehler beim Laden tracked games:", err);
-        if (mounted) setTracked([]);
-      } finally {
-        if (mounted) setLoading(false);
-      }
+    if (!profile) return;
+    try {
+      const list = getSavedList(profile.id);
+      setSaved(Array.isArray(list) ? list : []);
+    } catch (err) {
+      console.error("Fehler beim Laden der gespeicherten Liste:", err);
+      setSaved([]);
     }
-
-    loadTracked();
-    return () => (mounted = false);
-  }, [token]);
+  }, [profile]);
 
   if (!token) return <p style={{ padding: "1rem" }}>Du bist nicht eingeloggt.</p>;
   if (!profile) return <p style={{ padding: "1rem" }}>Profil wird geladen...</p>;
@@ -41,7 +35,7 @@ function AccountRoute() {
     <main className="account-container">
       <div className="account-header">
         <div className="profile">
-          <img src={profile.profile_image_url || "/default-avatar.png"} alt={profile.display_name} className="profile-avatar" />
+          <img src={profile.profile_image_url || "/default-avatar.png"} alt={profile.display_name} className="profile-avatar" style={{ marginRight: "2rem" }} />
           <div className="profile-info">
             <h2 className="profile-name">{profile.display_name}</h2>
             <p className="profile-handle">@{profile.login}</p>
@@ -53,8 +47,8 @@ function AccountRoute() {
 
         <div className="account-stats">
           <div className="stat">
-            <div className="stat-value">{tracked.length}</div>
-            <div className="stat-label">Tracked Games</div>
+            <div className="stat-value">{saved.length}</div>
+            <div className="stat-label">Currently playing</div>
           </div>
           <div className="stat">
             <div className="stat-value">—</div>
@@ -64,36 +58,43 @@ function AccountRoute() {
       </div>
 
       <section className="account-section">
-        <h3>Deine gespeicherten Spiele</h3>
-        {loading ? (
-          <p className="loading-placeholder">Lade Spiele…</p>
-        ) : tracked.length === 0 ? (
-          <p className="loading-placeholder">Du hast noch keine gespeicherten Spiele.</p>
+        <h3>Currently playing</h3>
+        {saved.length === 0 ? (
+          <p className="loading-placeholder">Du spielst momentan nichts.</p>
         ) : (
           <div className="table-wrap">
             <table className="account-table">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Spiel</th>
-                  <th>Genre</th>
-                  <th>Rating</th>
-                  <th>Release</th>
-                  <th></th>
+              <thead className="account-table__head">
+                <tr className="account-table__row">
+                  <th className="account-table__head-cell"></th>
+                  <th className="account-table__head-cell">Spiel</th>
+                  <th className="account-table__head-cell">Genre</th>
+                  <th className="account-table__head-cell">Rating</th>
+                  <th className="account-table__head-cell">Release</th>
+                  <th className="account-table__head-cell"></th>
                 </tr>
               </thead>
-              <tbody>
-                {tracked.map((g) => (
-                  <tr key={g.id}>
-                    <td className="cell-cover">
-                      <img src={g.cover?.url ? `https:${g.cover.url.replace("t_thumb", "t_cover_small")}` : "/default-cover.png"} alt={g.name} />
+              <tbody className="account-table__body">
+                {saved.map((g) => (
+                  <tr key={g.id} className="account-table__row">
+                    <td className="cell-cover account-table__cell">
+                      <img className="cell-cover__img" src={g.cover ? g.cover.replace("t_thumb", "t_cover_small") : "/default-cover.png"} alt={g.name} />
                     </td>
-                    <td className="cell-title">{g.name}</td>
-                    <td className="cell-genre">{g.genres && g.genres.length ? g.genres.map((x) => x.name).join(", ") : "—"}</td>
-                    <td className="cell-rating">{g.rating ? Math.round(g.rating) : "N/A"}</td>
-                    <td className="cell-release">{g.first_release_date ? new Date(g.first_release_date * 1000).getFullYear() : "—"}</td>
-                    <td className="cell-actions">
+                    <td className="cell-title account-table__cell">{g.name}</td>
+                    <td className="cell-genre account-table__cell">{g.genres && g.genres.length ? g.genres.map((x) => x.name).join(", ") : "—"}</td>
+                    <td className="cell-rating account-table__cell">{g.rating ? Math.round(g.rating) : "N/A"}</td>
+                    <td className="cell-release account-table__cell">{g.first_release_date ? new Date(g.first_release_date * 1000).getFullYear() : "—"}</td>
+                    <td className="cell-actions account-table__cell">
                       <button className="btn" onClick={() => navigate(`/game/${g.id}`)}>View</button>
+                      <button
+                        className="btn btn-ghost"
+                        onClick={() => {
+                          removeGameFromList(profile.id, g.id);
+                          setSaved((s) => s.filter((it) => String(it.id) !== String(g.id)));
+                        }}
+                      >
+                        Entfernen
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -101,7 +102,15 @@ function AccountRoute() {
             </table>
           </div>
         )}
+
+        <hr style={{ margin: "2rem 0" }} />
+
+       
+       
+
+
       </section>
+      <div style={{marginBottom:"100vh"}}></div>
     </main>
   );
 }

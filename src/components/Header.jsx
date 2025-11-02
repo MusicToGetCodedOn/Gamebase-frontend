@@ -75,8 +75,8 @@ export default function Header() {
       <div className="nav-right">
         <HeaderSearch />
         <ThemeToggle />
-        {!token ? (
-         <LoginNav><img src={login} alt="" /></LoginNav>
+  {!token ? (
+   <LoginNav><img className="login-nav__img" src={login} alt="" /></LoginNav>
         ) : (
           <div className="auth-buttons">
             <button
@@ -84,9 +84,10 @@ export default function Header() {
               onClick={() => handleNavigate("/profile")}
             >
               <img
-                src={profile?.profile_image_url || "/default-avatar.png"}
-                alt={profile?.display_name || "Profilbild"}
-              />
+                  src={profile?.profile_image_url || "/default-avatar.png"}
+                  alt={profile?.display_name || "Profilbild"}
+                  className="profile-avatar__img"
+                />
             </button>
             <LogoutButton />
           </div>

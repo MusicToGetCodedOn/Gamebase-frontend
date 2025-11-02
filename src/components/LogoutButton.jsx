@@ -17,7 +17,7 @@ export default function LogoutButton() {
 
   return (
     <button className="logout-button" onClick={handleLogout}>
-      <img src={logout} alt="Logout" />
+      <img className="logout-button__img" src={logout} alt="Logout" />
     </button>
   );
 }

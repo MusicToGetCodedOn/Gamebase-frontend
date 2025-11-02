@@ -91,7 +91,7 @@ export default function HeaderSearch() {
                 className={`search-icon-button ${open ? "active" : ""}`}
                 onClick={() => setOpen((s) => !s)}
             >
-                <img src={searchbar} alt="Search" />
+                <img className="search-icon-button__img" src={searchbar} alt="Search" />
             </button>
 
             <input
@@ -117,6 +117,7 @@ export default function HeaderSearch() {
                             title={g.name}
                         >
                             <img
+                                className="search-suggestion__img"
                                 src={
                                     g.cover?.url
                                         ? `https:${g.cover.url.replace("t_thumb", "t_cover_small")}`

@@ -92,11 +92,6 @@
   background-color: none;
 }
 
-.profile-avatar img {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-}
 
 .profile-avatar {
   /* Ensure the avatar button has no background so only the image shows */
@@ -120,27 +115,14 @@
   outline: none;
 }
 
-.profile-avatar img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border: none;
-  display: block;
-}
 
-.profile-avatar img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 8px rgba(128, 90, 213, 0.35);
-  /* subtle glow */
-}
 
 .profile-avatar:focus {
   outline: none;
 }
 
-.profile-avatar img {
+/* profile image - use a dedicated class to avoid tag selectors */
+.profile-avatar__img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -150,14 +132,17 @@
   display: block;
 }
 
-.profile-avatar img:hover {
+.profile-avatar__img:hover {
   transform: scale(1.05);
   box-shadow: 0 0 8px rgba(128, 90, 213, 0.35);
-  /* subtle glow */
 }
 
 
-.header button {
+.header .container-item,
+.header .hamburger,
+.header .theme-toggle,
+.header .profile-avatar,
+.header .search-icon-button {
   border: none;
   background-color: var(--button-bg);
   color: var(--text-color-nav);
@@ -166,7 +151,11 @@
   transition: color 0.2s ease, transform 0.1s ease;
 }
 
-.header button:hover {
+.header .container-item:hover,
+.header .hamburger:hover,
+.header .theme-toggle:hover,
+.header .profile-avatar:hover,
+.header .search-icon-button:hover {
   background-color: var(--link-hover-color);
   color: var(--card-bg);
   transform: scale(1.05);
@@ -225,6 +214,8 @@
   .header {
     height: auto;
     padding: 0.8rem 1rem;
+    border-bottom: none;
+    /* remove thin border line on mobile that can cut icons */
   }
 
   /* Hamburger sichtbar machen */
@@ -232,6 +223,10 @@
     display: flex;
     margin-bottom: 0;
     padding: 0.5rem;
+    /* take out of document flow so it doesn't push other items */
+    position: absolute;
+    left: 0.8rem;
+    top: 0.6rem;
   }
 
   /* Navigation Container - nur für Links, nicht für nav-right */
@@ -266,13 +261,16 @@
 
   /* nav-right bleibt oben rechts im Header */
   .nav-right {
-    position: static;
+    /* anchor to top-right so hamburger doesn't push it down */
+    position: absolute;
+    top: -1.1rem;
+    right: 0.8rem;
     flex-direction: row;
     margin: 0;
-    margin-right: 2rem;
     padding: 0;
-    gap: 0.75rem;
+    gap: 0.5rem;
     align-items: center;
+    z-index: 25;
   }
 
   .container-item {
@@ -284,10 +282,24 @@
 
   .theme-toggle {
     margin-top: 0;
+    width: 2.2rem;
+    height: 2.2rem;
   }
 
-  .profile-button {
-    margin-top: 0;
+  .profile-avatar__img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .search-icon-button__img {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* keep header visually above the mobile nav and any borders */
+  .header {
+    z-index: 60;
+    border-bottom: none;
   }
 }
 
@@ -318,9 +330,11 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
 }
 
-.profile-avatar img {
+.profile-avatar__img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -328,8 +342,7 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.profile-avatar img:hover {
+.profile-avatar__img:hover {
   transform: scale(1.1);
   box-shadow: 0 0 8px rgba(128, 90, 213, 0.6);
-  /* leicht violettes Glow */
 }

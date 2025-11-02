@@ -1,12 +1,16 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./GameDetail.css";
+import { useAuth } from "../context/AuthContext";
+import { addGameToList, removeGameFromList, isGameSaved } from "../utils/savedLists";
 
 function GameDetailRoute() {
   const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const { id } = useParams();
   const [game, setGame] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { profile } = useAuth();
+  const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
     async function fetchGame() {
@@ -28,6 +32,14 @@ function GameDetailRoute() {
           const data = JSON.parse(text);
           console.log("🟢 JSON Antwort:", data);
           setGame(data[0] || null);
+          // after we have the game, check saved state
+          if (data && data[0] && profile) {
+            try {
+              setIsSaved(isGameSaved(profile.id, data[0].id));
+            } catch (e) {
+              // ignore
+            }
+          }
         } catch (err) {
           console.error("🔴 JSON Parse Error:", err);
         }
@@ -40,6 +52,16 @@ function GameDetailRoute() {
 
     fetchGame();
   }, [id]);
+
+  // if profile changes, re-check saved state
+  useEffect(() => {
+    if (!game || !profile) return;
+    try {
+      setIsSaved(isGameSaved(profile.id, game.id));
+    } catch (e) {
+      console.error(e);
+    }
+  }, [profile, game]);
 
   if (loading)
     return (
@@ -117,10 +139,31 @@ function GameDetailRoute() {
           <p className="game-detail__description">
             {game.summary || "Keine Beschreibung verfügbar."}
           </p>
+          <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", marginTop: "1rem" }}>
+            {profile ? (
+              <button
+                className={isSaved ? "btn btn-ghost" : "btn btn-primary"}
+                onClick={() => {
+                  if (!profile) return;
+                  if (isSaved) {
+                    removeGameFromList(profile.id, game.id);
+                    setIsSaved(false);
+                  } else {
+                    addGameToList(profile.id, game);
+                    setIsSaved(true);
+                  }
+                }}
+              >
+                {isSaved ? "Von Liste entfernen" : "Zu 'Currently playing' hinzufügen"}
+              </button>
+            ) : (
+              <button className="btn btn-ghost" onClick={() => alert("Bitte einloggen, um Spiele zu speichern.")}>Zu Liste hinzufügen</button>
+            )}
 
-          <Link to="/" className="back-link">
-            ← Zurück
-          </Link>
+            <Link to="/" className="back-link">
+              ← Zurück
+            </Link>
+          </div>
         </div>
       </div>
     </div>

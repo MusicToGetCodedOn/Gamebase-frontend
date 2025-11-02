@@ -24,7 +24,7 @@
 }
 
 
-.search-icon-button img {
+.search-icon-button__img {
   width: 22px;
   height: 22px;
 }
@@ -106,7 +106,7 @@
   background: rgba(128, 90, 213, 0.15);
 }
 
-.search-suggestion img {
+.search-suggestion__img {
   width: 55px;
   height: 75px;
   object-fit: cover;
@@ -150,6 +150,6 @@
   }
 
   .search-input.expanded {
-    width: 100%;
+    width: 30px;
   }
 }
