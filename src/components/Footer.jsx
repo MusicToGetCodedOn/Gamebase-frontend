@@ -32,7 +32,7 @@ function Footer() {
                 <div className="footer-contact">
                     <h4>Contact</h4>
                     <ul>
-                        <li><a href="/contact">Kontaktformular</a></li>
+                        <li><Link to="/contact">Kontaktformular</Link></li>
                         <li> <button
                             className="footer-link-button"
                             onClick={() => setShowImpressum(true)}
