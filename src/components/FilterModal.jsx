@@ -51,6 +51,7 @@ export default function FilterModal({ open, onClose, onApply }) {
           <label>Sortieren nach</label>
           <select name="sort" value={filters.sort} onChange={handleChange}>
             <option value="rating desc">Bewertung (absteigend)</option>
+            <option value="rating asc">Bewertung (aufsteigend)</option>
             <option value="first_release_date desc">Release (neueste zuerst)</option>
             <option value="name asc">Name (A-Z)</option>
           </select>
