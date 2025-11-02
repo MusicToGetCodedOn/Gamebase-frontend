@@ -21,16 +21,20 @@ function AccountRoute() {
   }
 
   return (
-    <div style={{ textAlign: "center", color: "var(--text-color)" }}>
-      <img
-        src={profile.profile_image_url}
-        alt={profile.display_name}
-        style={{ borderRadius: "50%", width: "100px", height: "100px" }}
-      />
-      <h2>{profile.display_name}</h2>
-      <p>@{profile.login}</p>
-      <LogoutButton onLogout={logout} />
-    </div>
+    <main>
+      <div style={{ textAlign: "center", color: "var(--text-color)" }}>
+        <img
+          src={profile.profile_image_url}
+          alt={profile.display_name}
+          style={{ borderRadius: "50%", width: "100px", height: "100px" }}
+        />
+        <h2>{profile.display_name}</h2>
+        <p>@{profile.login}</p>
+      </div>
+      <div style={{ textAlign: "center", marginTop: "1rem", marginBottom: "100vh" }}>
+        
+      </div>
+    </main>
   );
 }
 

@@ -1,6 +1,10 @@
+import { useToast } from "../context/ToastContext.jsx";
 import './LoginButton.css';
 export default function LoginButton({ children }) {
+  const { showToast } = useToast();
+
   const handleLogin = () => {
+    showToast("🔑 Weiterleitung zu Twitch Login...", "info");
     const clientId = import.meta.env.VITE_TWITCH_CLIENT_ID;
     const redirectUri = import.meta.env.VITE_REDIRECT_URI;
 

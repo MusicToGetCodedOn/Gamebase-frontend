@@ -5,6 +5,7 @@ import { AuthProvider, useAuth } from "./context/AuthContext.jsx";
 import Header from "./components/Header.jsx";
 import LoginButton from "./components/LoginButton.jsx";
 import Footer from "./components/Footer.jsx";
+import { ToastProvider } from "./context/ToastContext.jsx";
 
 function AppContent() {
   const { token } = useAuth();
@@ -31,9 +32,11 @@ function AppContent() {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <AppContent />
-    </AuthProvider>
+    <ToastProvider>
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
+    </ToastProvider>
   );
 }
 // End of App.jsx
