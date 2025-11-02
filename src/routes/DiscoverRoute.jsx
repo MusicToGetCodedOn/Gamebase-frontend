@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import GameGrid from "../components/Gamegrid.jsx";
 import { fetchFilteredGames } from "../utils/fetchFilteredGames.js";
 import "./routes.css";
+import { useAuth } from "../context/AuthContext.jsx";
 
 function DiscoverRoute() {
+  const { token } = useAuth();
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
   const [genre, setGenre] = useState("");

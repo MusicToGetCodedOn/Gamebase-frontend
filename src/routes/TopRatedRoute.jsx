@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import GameGrid from "../components/Gamegrid.jsx";
 import { fetchTopRatedGames } from "../utils/fetchTopRatedGames.js";
 import "./routes.css";
+import { useAuth } from "../context/AuthContext.jsx";
 
 function TopRatedRoute() {
+  const { token } = useAuth();
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
 
