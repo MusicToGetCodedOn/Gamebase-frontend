@@ -71,6 +71,8 @@
   margin-right: 1.5rem;
 }
 
+
+
 /* Auth buttons container: theme toggle, avatar, logout in one row */
 .auth-buttons {
   display: flex;
@@ -89,11 +91,13 @@
   cursor: pointer;
   background-color: none;
 }
+
 .profile-avatar img {
   width: 36px;
   height: 36px;
   border-radius: 50%;
 }
+
 .profile-avatar {
   /* Ensure the avatar button has no background so only the image shows */
   background: transparent !important;
@@ -105,14 +109,17 @@
   align-items: center;
   justify-content: center;
 }
+
 .profile-avatar:hover,
 .profile-avatar:focus {
   background: transparent !important;
   box-shadow: none;
 }
+
 .profile-avatar:focus {
   outline: none;
 }
+
 .profile-avatar img {
   width: 40px;
   height: 40px;
@@ -125,11 +132,14 @@
 
 .profile-avatar img:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 8px rgba(128, 90, 213, 0.35); /* subtle glow */
+  box-shadow: 0 0 8px rgba(128, 90, 213, 0.35);
+  /* subtle glow */
 }
+
 .profile-avatar:focus {
   outline: none;
 }
+
 .profile-avatar img {
   width: 40px;
   height: 40px;
@@ -142,7 +152,8 @@
 
 .profile-avatar img:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 8px rgba(128, 90, 213, 0.35); /* subtle glow */
+  box-shadow: 0 0 8px rgba(128, 90, 213, 0.35);
+  /* subtle glow */
 }
 
 
@@ -268,7 +279,7 @@
     text-align: center;
     padding: 0.6em 1.2em;
     font-size: 1.1rem;
-    width: 80%;
+    width: fit-content;
   }
 
   .theme-toggle {
@@ -319,5 +330,6 @@
 
 .profile-avatar img:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 8px rgba(128, 90, 213, 0.6); /* leicht violettes Glow */
+  box-shadow: 0 0 8px rgba(128, 90, 213, 0.6);
+  /* leicht violettes Glow */
 }

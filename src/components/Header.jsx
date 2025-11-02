@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import "./Header.css";
 import HeaderSearch from "./HeaderSearch";
-import LoginButton from "./LoginButton";
 import { useAuth } from "../context/AuthContext";
 import LogoutButton from "./LogoutButton";
+import login from "../assets/icons/login.png";
+import LoginNav from "./LoginNav";
 
 export default function Header() {
   const { token, profile } = useAuth();
@@ -75,7 +76,7 @@ export default function Header() {
         <HeaderSearch />
         <ThemeToggle />
         {!token ? (
-          <LoginButton />
+         <LoginNav><img src={login} alt="" /></LoginNav>
         ) : (
           <div className="auth-buttons">
             <button

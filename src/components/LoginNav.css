@@ -1,0 +1,34 @@
+.login-nav {
+  all: unset; /* Alles zurücksetzen, damit keine globalen Styles greifen */
+  background: var(--button-bg);
+  color: var(--text-color);
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  box-sizing: border-box;
+}
+
+.login-nav:hover {
+  background: var(--button-hover-bg);
+  transform: translateY(-1px);
+}
+
+.login-nav img {
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.login-nav:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}

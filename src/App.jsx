@@ -16,7 +16,7 @@ function AppContent() {
         {!token ? (
           <div style={{ textAlign: "center", marginTop: "2rem" }}>
             <h2>Bitte melde dich mit Twitch an</h2>
-            <LoginButton />
+            <LoginButton>Login with Twitch</LoginButton>
           </div>
         ) : (
           <Outlet />

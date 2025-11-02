@@ -12,6 +12,7 @@ import AccountRoute from './routes/AccountRoute.jsx'
 import TopRatedRoute from './routes/TopRatedRoute.jsx'
 import GameDetailRoute from './routes/GameDetailRoute.jsx'
 import { AuthProvider } from './context/AuthContext.jsx'
+import ContactRoute from './routes/ContactRoute.jsx'
 
 
 const router = createBrowserRouter([
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
         path: '/game/:id',
         element: <GameDetailRoute />,
       },
+      {
+        path: '/contact',
+        element: <ContactRoute />
+      }
     
     ],
   },

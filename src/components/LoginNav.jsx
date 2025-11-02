@@ -1,6 +1,6 @@
-import './LoginButton.css';
-export default function LoginButton({ children }) {
-  const handleLogin = () => {
+import './LoginNav.css';
+export default function LoginNav({ children }) {
+     const handleLogin = () => {
     const clientId = import.meta.env.VITE_TWITCH_CLIENT_ID;
     const redirectUri = import.meta.env.VITE_REDIRECT_URI;
 
@@ -10,7 +10,7 @@ export default function LoginButton({ children }) {
   };
 
   return (
-    <button className="login-button" onClick={handleLogin}>
+    <button className="login-nav" onClick={handleLogin}>
       {children}
     </button>
   );
