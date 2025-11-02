@@ -1,0 +1,65 @@
+.account-container{
+  max-width: 1100px;
+  margin: 1.25rem auto;
+  padding: 1rem;
+}
+
+.account-header{
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  align-items:center;
+  margin-bottom:1rem;
+}
+
+.profile{
+  display:flex;
+  gap:1rem;
+  align-items:center;
+}
+
+.profile-avatar{
+  width:96px;
+  height:96px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid var(--border-color);
+}
+
+.profile-name{ margin:0; color:var(--text-color); font-size:1.1rem; }
+.profile-handle { margin:0; color:var(--text-color-secondary); }
+.profile-actions{ display:flex; gap:0.5rem; margin-top:0.4rem; }
+
+.btn{ background:var(--accent-color); color:white; border:none; padding:0.45rem 0.7rem; border-radius:8px; cursor:pointer }
+.btn:hover{ filter:brightness(0.95); }
+
+.account-stats{ display:flex; gap:1rem; align-items:center }
+.stat{ text-align:center }
+.stat-value{ font-weight:700; font-size:1.15rem; color:var(--text-color) }
+.stat-label{ font-size:0.85rem; color:var(--text-color-secondary) }
+
+.account-section{ margin-top:1rem }
+.account-section h3{ margin:0 0 0.5rem 0; color:var(--text-color) }
+
+.table-wrap{ overflow:auto; background:transparent; border-radius:8px }
+.account-table{ width:100%; border-collapse:collapse; min-width:720px }
+.account-table thead th{ text-align:left; padding:0.75rem; color:var(--text-color-secondary); border-bottom:1px solid var(--border-color) }
+.account-table tbody td{ padding:0.6rem 0.75rem; border-bottom:1px dashed var(--border-color); vertical-align:middle }
+.cell-cover img{ width:60px; height:48px; object-fit:cover; border-radius:6px }
+.cell-title{ font-weight:600; color:var(--text-color) }
+.cell-genre{ color:var(--text-color-secondary); font-size:0.95rem }
+.cell-rating{ color:var(--accent-color) }
+.cell-actions{ text-align:right }
+
+.loading-placeholder{ padding:1.5rem; text-align:center; color:var(--text-color-secondary) }
+
+/* Responsive: collapse table to cards on very small screens */
+@media (max-width: 720px){
+  .account-header{ flex-direction:column; align-items:flex-start }
+  .account-stats{ margin-top:0.5rem }
+  .account-table{ min-width:unset; }
+  .account-table thead{ display:none }
+  .account-table tbody tr{ display:block; border:1px solid var(--border-color); border-radius:10px; margin-bottom:0.75rem; padding:0.5rem }
+  .account-table tbody td{ display:flex; gap:0.6rem; align-items:center; padding:0.5rem }
+  .cell-actions{ justify-content:flex-end }
+}

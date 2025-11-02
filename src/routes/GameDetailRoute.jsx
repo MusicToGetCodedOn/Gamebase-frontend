@@ -16,7 +16,7 @@ function GameDetailRoute() {
           method: "POST",
           headers: { "Content-Type": "text/plain" },
           body: `
-        fields name, id, summary, rating, cover.url;
+        fields name, id, summary, rating, cover.url, genres.name, first_release_date, involved_companies.company.name, involved_companies.publisher, platforms.name;
         where id = ${id};
         limit 1;
       `,
@@ -60,6 +60,10 @@ function GameDetailRoute() {
   const publisher =
     game.involved_companies?.find((c) => c.publisher)?.company?.name ||
     "Unbekannter Publisher";
+    
+    
+    const platforms =
+    game.platforms?.map((p) => p.name).join(", ") || "Unbekannte Plattformen";
 
   // 🎨 Datum formatieren
   const formatDate = (unix) => {
@@ -108,6 +112,7 @@ function GameDetailRoute() {
           <p className="game-detail__release">
             📅 {formatDate(game.first_release_date)}
           </p>
+          <p className="game-detail__platforms">🎮 {platforms}</p>
 
           <p className="game-detail__description">
             {game.summary || "Keine Beschreibung verfügbar."}
