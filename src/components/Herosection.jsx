@@ -1,12 +1,23 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Herosection.css";
+import {
+  addGameToList,
+  removeGameFromList,
+  isGameSaved,
+} from "../utils/savedLists";
+import { useAuth } from "../context/AuthContext";
+import add from "../assets/icons/add.png";
+import remove from "../assets/icons/remove.png";
+import { useToast } from "../context/ToastContext";
 
 function Herosection() {
   const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [slides, setSlides] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loading, setLoading] = useState(true);
+  const { profile } = useAuth();
+  const { showToast } = useToast();
 
   useEffect(() => {
     async function fetchRandomTopGames() {
@@ -87,6 +98,7 @@ function Herosection() {
     <section className="hero-section">
       <div className="hero-slider">
         {slides.map((game, index) => {
+          const saved = profile ? isGameSaved(profile.id, game.id) : false;
           const bgImage = game.cover
             ? `https:${game.cover.url.replace("t_thumb", "t_1080p")}`
             : "/placeholder-cover.jpg";
@@ -116,6 +128,56 @@ function Herosection() {
                   <Link to={`/game/${game.id}`} className="hero-btn secondary">
                     Mehr erfahren
                   </Link>
+                  {profile ? (
+                    <button
+                      className={
+                        profile && isGameSaved(profile.id, game.id)
+                          ? "hero-btn secondary"
+                          : "hero-btn primary"
+                      }
+                      onClick={() => {
+                        if (!profile) return;
+                        if (isGameSaved(profile.id, game.id)) {
+                          removeGameFromList(profile.id, game.id);
+                          showToast(
+                            `🗑️ "${game.name}" von deiner Liste entfernt`,
+                            "warning"
+                          );
+                          setSuggestions((prev) => [...prev]);
+                        } else {
+                          addGameToList(profile.id, game);
+                          showToast(
+                            `✅ "${game.name}" zu deiner Liste hinzugefügt`,
+                            "success"
+                          );
+                          setSuggestions((prev) => [...prev]);
+                        }
+                      }}
+                    >
+                      {profile && isGameSaved(profile.id, game.id) ? (
+                        <img
+                          src={remove}
+                          alt="Entfernen"
+                          style={{ width: "1rem", height: "1rem" }}
+                        />
+                      ) : (
+                        <img
+                          src={add}
+                          alt="Hinzufügen"
+                          style={{ width: "1rem", height: "1rem" }}
+                        />
+                      )}
+                    </button>
+                  ) : (
+                    <button
+                      className="btn btn-ghost suggestion-btn"
+                      onClick={() =>
+                        alert("Bitte einloggen, um Spiele zu speichern.")
+                      }
+                    >
+                      +
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

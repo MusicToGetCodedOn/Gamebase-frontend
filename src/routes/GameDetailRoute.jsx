@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import "./GameDetail.css";
 import { useAuth } from "../context/AuthContext";
 import { addGameToList, removeGameFromList, isGameSaved } from "../utils/savedLists";
+import add from "../assets/icons/add.png";
+import remove from "../assets/icons/remove.png";
+import { useToast } from "../context/ToastContext";
 
 function GameDetailRoute() {
   const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -11,6 +14,7 @@ function GameDetailRoute() {
   const [loading, setLoading] = useState(true);
   const { profile } = useAuth();
   const [isSaved, setIsSaved] = useState(false);
+  const { showToast } = useToast();
 
   useEffect(() => {
     async function fetchGame() {
@@ -138,29 +142,33 @@ function GameDetailRoute() {
             {game.summary || "Keine Beschreibung verfügbar."}
           </p>
           <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", marginTop: "1rem" }}>
-            {profile ? (
-              <button
-                className={isSaved ? "btn btn-ghost" : "btn btn-primary"}
-                onClick={() => {
-                  if (!profile) return;
-                  if (isSaved) {
-                    removeGameFromList(profile.id, game.id);
-                    setIsSaved(false);
-                  } else {
-                    addGameToList(profile.id, game);
-                    setIsSaved(true);
-                  }
-                }}
-              >
-                {isSaved ? "Von Liste entfernen" : "Zu 'Currently playing' hinzufügen"}
-              </button>
-            ) : (
-              <button className="btn btn-ghost" onClick={() => alert("Bitte einloggen, um Spiele zu speichern.")}>Zu Liste hinzufügen</button>
-            )}
+            
 
             <Link to="/" className="back-link">
               ← Zurück
             </Link>
+            {profile ? (
+              <button
+                className={isSaved ? "btn btn-ghost" : "btn btn-primary"}
+                style={{ marginLeft: "10%", display: "flex", alignItems: "center", gap: "0.5rem" }}
+                onClick={() => {
+                  if (!profile) return;
+                  if (isSaved) {
+                    removeGameFromList(profile.id, game.id);
+                    showToast(`🗑️ "${game.name}" von deiner Liste entfernt`, "warning");
+                    setIsSaved(false);
+                  } else {
+                    addGameToList(profile.id, game);
+                    showToast(`✅ "${game.name}" zu deiner Liste hinzugefügt`, "success");
+                    setIsSaved(true);
+                  }
+                }}
+              >
+                {isSaved ? <img src={remove} alt="Entfernen" style={{ width: "1rem", height: "1rem" }} /> : <img src={add} alt="Hinzufügen" style={{ width: "1rem", height: "1rem" }} />}
+              </button>
+            ) : (
+              <button className="btn btn-ghost" onClick={() => alert("Bitte einloggen, um Spiele zu speichern.")}>Zu Liste hinzufügen</button>
+            )}
           </div>
         </div>
       </div>
