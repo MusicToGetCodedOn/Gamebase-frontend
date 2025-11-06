@@ -6,6 +6,7 @@ import Header from "./components/Header.jsx";
 import LoginButton from "./components/LoginButton.jsx";
 import Footer from "./components/Footer.jsx";
 import { ToastProvider } from "./context/ToastContext.jsx";
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 function AppContent() {
   const { token } = useAuth();
@@ -35,6 +36,7 @@ export default function App() {
     <ToastProvider>
       <AuthProvider>
         <AppContent />
+        <SpeedInsights />
       </AuthProvider>
     </ToastProvider>
   );
