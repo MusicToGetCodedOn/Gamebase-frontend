@@ -68,6 +68,7 @@
 .nav-right {
   display: flex;
   gap: 0.75rem;
+  justify-content: space-evenly;
   align-items: center;
   margin-left: auto; /* keep this group to the right */
 }
@@ -82,16 +83,6 @@
 }
 
 /* Profile avatar button */
-.profile-avatar {
-  background: transparent;
-  border: none;
-  padding: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  background-color: none;
-}
 
 
 .profile-avatar {
@@ -100,6 +91,7 @@
   background-color: transparent !important;
   border: none !important;
   padding: 0;
+  margin: 0 ;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
