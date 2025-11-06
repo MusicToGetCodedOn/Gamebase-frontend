@@ -2,8 +2,8 @@
   all: unset; /* Alles zurücksetzen, damit keine globalen Styles greifen */
   background: var(--button-bg);
   color: var(--text-color);
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   display: flex;
   align-items: center;

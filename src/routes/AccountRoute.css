@@ -18,13 +18,7 @@
   align-items:center;
 }
 
-.profile-avatar{
-  width:96px;
-  height:96px;
-  border-radius:50%;
-  object-fit:cover;
-  border:2px solid var(--border-color);
-}
+
 
 .profile-name{ margin:0; color:var(--text-color); font-size:1.1rem; }
 .profile-handle { margin:0; color:var(--text-color-secondary); }

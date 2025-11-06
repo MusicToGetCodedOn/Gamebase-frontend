@@ -4,12 +4,17 @@
 }
 
 .game-card {
+  /* Card width is responsive and uses the shared --card-width variable.
+    A local fallback is provided so cards stay reasonable if --card-width
+    isn't defined at the root. */
   background-color: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 12px;
   box-shadow: 0 4px 10px var(--shadow);
   overflow: hidden;
-  width: 200px;
+  width: var(--card-width, clamp(140px, 16vw, 220px));
+  min-width: 120px;
+  max-width: 260px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   cursor: pointer;
   display: flex;
