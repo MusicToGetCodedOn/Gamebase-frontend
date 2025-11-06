@@ -33,7 +33,7 @@ function GameCard({ id, cover, name, genre, rating }) {
 
         {profile ? (
           <button
-            className={saved ? "btn btn-ghost" : "btn btn-primary"}
+            className={saved ? "btn-add" : "btn-remove"}
             onClick={(e) => {
               e.preventDefault(); // verhindert, dass Link geklickt wird
               if (saved) {

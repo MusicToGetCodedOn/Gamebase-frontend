@@ -75,3 +75,47 @@
   color: var(--accent-color);
   margin-top: 0.2rem;
 }
+
+/* Small action buttons inside the card (save / remove) */
+.btn-add,
+.btn-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  padding: 0;
+  margin-top: 0.4rem;
+  cursor: pointer;
+  transition: transform 0.12s ease, background-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.btn-add {
+  /* primary action look (uses site accent) */
+  background: linear-gradient(135deg, var(--accent-color), #8b5cf6);
+  color: white;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.btn-add:hover { transform: translateY(-2px); filter:brightness(1.03); }
+
+.btn-remove {
+  /* subtle/ghost look for removal when not primary */
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+.btn-remove:hover { background: rgba(0,0,0,0.04); transform: translateY(-2px); }
+
+.btn-add img,
+.btn-remove img {
+  width: 1rem;
+  height: 1rem;
+  display: block;
+}
+
+.btn-add:focus,
+.btn-remove:focus {
+  outline: 3px auto -webkit-focus-ring-color;
+}
