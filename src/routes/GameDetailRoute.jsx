@@ -15,7 +15,7 @@ function GameDetailRoute() {
   useEffect(() => {
     async function fetchGame() {
       try {
-        console.log("🟣 Lade Spiel mit ID:", id);
+      
         const res = await fetch(`${VITE_API_BASE_URL}/api/games`, {
           method: "POST",
           headers: { "Content-Type": "text/plain" },
@@ -27,10 +27,8 @@ function GameDetailRoute() {
         });
 
         const text = await res.text();
-        console.log("🟡 Rohe Antwort:", text);
         try {
           const data = JSON.parse(text);
-          console.log("🟢 JSON Antwort:", data);
           setGame(data[0] || null);
           // after we have the game, check saved state
           if (data && data[0] && profile) {
