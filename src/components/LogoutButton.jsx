@@ -12,7 +12,7 @@ export default function LogoutButton() {
     localStorage.removeItem("twitch_profile_image");
     localStorage.removeItem("twitch_username");
     showToast("🔑 Erfolgreich abgemeldet", "info");
-    window.location.reload();
+    navigate("/");
   };
 
   return (

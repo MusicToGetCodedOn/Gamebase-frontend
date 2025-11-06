@@ -41,4 +41,3 @@ export default function App() {
     </ToastProvider>
   );
 }
-// End of App.jsx
