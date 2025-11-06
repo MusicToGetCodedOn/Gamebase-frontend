@@ -126,7 +126,7 @@ export default function HeaderSearch() {
           aria-label="Suchvorschläge"
         >
           {suggestions.map((g) => {
-            const saved = profile ? isGameSaved(profile.id, g.id) : false;
+            
 
             return (
               <li

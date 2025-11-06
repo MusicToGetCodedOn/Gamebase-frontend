@@ -2,7 +2,11 @@ import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./GameDetail.css";
 import { useAuth } from "../context/AuthContext";
-import { addGameToList, removeGameFromList, isGameSaved } from "../utils/savedLists";
+import {
+  addGameToList,
+  removeGameFromList,
+  isGameSaved,
+} from "../utils/savedLists";
 import add from "../assets/icons/add.png";
 import remove from "../assets/icons/remove.png";
 import { useToast } from "../context/ToastContext";
@@ -19,7 +23,6 @@ function GameDetailRoute() {
   useEffect(() => {
     async function fetchGame() {
       try {
-      
         const res = await fetch(`${VITE_API_BASE_URL}/api/games`, {
           method: "POST",
           headers: { "Content-Type": "text/plain" },
@@ -84,21 +87,18 @@ function GameDetailRoute() {
   const publisher =
     game.involved_companies?.find((c) => c.publisher)?.company?.name ||
     "Unbekannter Publisher";
-    
-    
-    const platforms =
+
+  const platforms =
     game.platforms?.map((p) => p.name).join(", ") || "Unbekannte Plattformen";
 
   // 🎨 Datum formatieren
-  const formatDate = (unix) => {
-    if (!unix) return "Unbekanntes Datum";
-    const date = new Date(unix * 1000);
-    return date.toLocaleDateString("de-CH", {
-      day: "2-digit",
-      month: "long",
+  function formatDate(timestamp) {
+    return new Date(timestamp).toLocaleDateString("en-US", {
       year: "numeric",
+      month: "long",
+      day: "numeric",
     });
-  };
+  }
 
   // 🎨 Hintergrundbild für Atmosphäre
   const background = game.cover
@@ -134,40 +134,76 @@ function GameDetailRoute() {
           </p>
           <p className="game-detail__publisher">🏢 {publisher}</p>
           <p className="game-detail__release">
-            📅 {formatDate(game.first_release_date)}
+           📅 {game.first_release_date ? formatDate(game.first_release_date * 1000) : "Unknown"}
+
           </p>
           <p className="game-detail__platforms">🎮 {platforms}</p>
 
           <p className="game-detail__description">
             {game.summary || "Keine Beschreibung verfügbar."}
           </p>
-          <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", marginTop: "1rem" }}>
-            
-
+          <div
+            style={{
+              display: "flex",
+              gap: "0.5rem",
+              alignItems: "center",
+              marginTop: "1rem",
+            }}
+          >
             <Link to="/" className="back-link">
               ← Zurück
             </Link>
             {profile ? (
               <button
                 className={isSaved ? "btn btn-ghost" : "btn btn-primary"}
-                style={{ marginLeft: "10%", display: "flex", alignItems: "center", gap: "0.5rem" }}
+                style={{
+                  marginLeft: "10%",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                }}
                 onClick={() => {
                   if (!profile) return;
                   if (isSaved) {
                     removeGameFromList(profile.id, game.id);
-                    showToast(`🗑️ "${game.name}" von deiner Liste entfernt`, "warning");
+                    showToast(
+                      `🗑️ "${game.name}" von deiner Liste entfernt`,
+                      "warning"
+                    );
                     setIsSaved(false);
                   } else {
                     addGameToList(profile.id, game);
-                    showToast(`✅ "${game.name}" zu deiner Liste hinzugefügt`, "success");
+                    showToast(
+                      `✅ "${game.name}" zu deiner Liste hinzugefügt`,
+                      "success"
+                    );
                     setIsSaved(true);
                   }
                 }}
               >
-                {isSaved ? <img src={remove} alt="Entfernen" style={{ width: "1rem", height: "1rem" }} /> : <img src={add} alt="Hinzufügen" style={{ width: "1rem", height: "1rem" }} />}
+                {isSaved ? (
+                  <img
+                    src={remove}
+                    alt="Entfernen"
+                    style={{ width: "1rem", height: "1rem" }}
+                  />
+                ) : (
+                  <img
+                    src={add}
+                    alt="Hinzufügen"
+                    style={{ width: "1rem", height: "1rem" }}
+                  />
+                )}
               </button>
             ) : (
-              <button className="btn btn-ghost" onClick={() => alert("Bitte einloggen, um Spiele zu speichern.")}>Zu Liste hinzufügen</button>
+              <button
+                className="btn btn-ghost"
+                onClick={() =>
+                  alert("Bitte einloggen, um Spiele zu speichern.")
+                }
+              >
+                Zu Liste hinzufügen
+              </button>
             )}
           </div>
         </div>

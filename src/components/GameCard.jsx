@@ -10,11 +10,18 @@ import add from "../assets/icons/add.png";
 import remove from "../assets/icons/remove.png";
 import { useToast } from "../context/ToastContext";
 
-function GameCard({ id, cover, name, genre, rating }) {
+function GameCard({ id, cover, name, genre, rating, first_release_date }) {
   const { profile } = useAuth();
   const { showToast } = useToast();
 
   const saved = profile ? isGameSaved(profile.id, id) : false;
+  function formatDate(dateString) {
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  }
 
   return (
     <div className="game-card">
@@ -29,7 +36,12 @@ function GameCard({ id, cover, name, genre, rating }) {
       <div className="game-card-info">
         <h3 className="game-card-title">{name}</h3>
         <p className="game-card-genre">{genre}</p>
-        <span className="game-card-rating">⭐ {rating ? Math.round(rating) : "N/A"}</span>
+        <p className="game-card-release" style={{ opacity: 0.7 }}>
+          {first_release_date ? formatDate(first_release_date * 1000) : ""}
+        </p>
+        <span className="game-card-rating">
+          ⭐ {rating ? Math.round(rating) : "N/A"}
+        </span>
 
         {profile ? (
           <button
@@ -46,15 +58,25 @@ function GameCard({ id, cover, name, genre, rating }) {
             }}
           >
             {saved ? (
-              <img src={remove} alt="Entfernen" style={{ width: "1rem", height: "1rem" }} />
+              <img
+                src={remove}
+                alt="Entfernen"
+                style={{ width: "1rem", height: "1rem" }}
+              />
             ) : (
-              <img src={add} alt="Hinzufügen" style={{ width: "1rem", height: "1rem" }} />
+              <img
+                src={add}
+                alt="Hinzufügen"
+                style={{ width: "1rem", height: "1rem" }}
+              />
             )}
           </button>
         ) : (
           <button
             className="btn btn-ghost"
-            onClick={() => showToast("🔐 Bitte einloggen, um Spiele zu speichern.", "error")}
+            onClick={() =>
+              showToast("🔐 Bitte einloggen, um Spiele zu speichern.", "error")
+            }
           >
             +
           </button>

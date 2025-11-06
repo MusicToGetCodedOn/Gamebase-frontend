@@ -2,6 +2,8 @@ import GameCard from "./GameCard";
 import "./Gamegrid.css";
 
 function GameGrid({ games = [] }) {
+console.log(games);
+
   if (!Array.isArray(games) || games.length === 0) {
     return (
       <p style={{ textAlign: "center", color: "var(--text-color-secondary)" }}>
@@ -24,6 +26,7 @@ function GameGrid({ games = [] }) {
               : "Unbekannt"
           }
           rating={game.rating}
+          first_release_date={game.first_release_date}
         />
       ))}
     </div>

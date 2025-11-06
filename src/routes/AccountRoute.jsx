@@ -115,9 +115,7 @@ function AccountRoute() {
                       {g.rating ? Math.round(g.rating) : "N/A"}
                     </td>
                     <td className="cell-release account-table__cell">
-                      {g.first_release_date
-                        ? new Date(g.first_release_date * 1000).getFullYear()
-                        : "—"}
+                      {g.first_release_date ? formatDate(g.first_release_date * 1000) : "Unknown"}
                     </td>
                     <td className="cell-actions account-table__cell">
                       <button
