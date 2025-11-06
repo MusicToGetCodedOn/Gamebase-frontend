@@ -5,16 +5,24 @@ import LogoutButton from "../components/LogoutButton";
 import { fetchPopularGames } from "../utils/fetchPopularGames.js";
 import "./AccountRoute.css";
 import { getSavedList, removeGameFromList } from "../utils/savedLists";
+import { useToast } from "../context/ToastContext";
 
 function AccountRoute() {
   const { token, profile } = useAuth();
   const navigate = useNavigate();
+  const { showToast } = useToast();
 
   const [tracked, setTracked] = useState([]);
   const [loading, setLoading] = useState(true);
   const [saved, setSaved] = useState([]);
 
-
+  function formatDate(dateString) {
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  }
 
   // load saved "Currently playing" list from localStorage (per user)
   useEffect(() => {
@@ -28,14 +36,21 @@ function AccountRoute() {
     }
   }, [profile]);
 
-  if (!token) return <p style={{ padding: "1rem" }}>Du bist nicht eingeloggt.</p>;
-  if (!profile) return <p style={{ padding: "1rem" }}>Profil wird geladen...</p>;
+  if (!token)
+    return <p style={{ padding: "1rem" }}>Du bist nicht eingeloggt.</p>;
+  if (!profile)
+    return <p style={{ padding: "1rem" }}>Profil wird geladen...</p>;
 
   return (
     <main className="account-container">
       <div className="account-header">
         <div className="profile">
-          <img src={profile.profile_image_url || "/default-avatar.png"} alt={profile.display_name} className="profile-avatar" style={{ marginRight: "2rem" }} />
+          <img
+            src={profile.profile_image_url || "/default-avatar.png"}
+            alt={profile.display_name}
+            className="profile-avatar"
+            style={{ marginRight: "2rem", borderRadius: "50%" }}
+          />
           <div className="profile-info">
             <h2 className="profile-name">{profile.display_name}</h2>
             <p className="profile-handle">@{profile.login}</p>
@@ -51,7 +66,9 @@ function AccountRoute() {
             <div className="stat-label">Currently playing</div>
           </div>
           <div className="stat">
-            <div className="stat-value">—</div>
+            <div className="stat-value">
+              {profile.created_at ? formatDate(profile.created_at) : "—"}
+            </div>
             <div className="stat-label">Member since</div>
           </div>
         </div>
@@ -78,19 +95,45 @@ function AccountRoute() {
                 {saved.map((g) => (
                   <tr key={g.id} className="account-table__row">
                     <td className="cell-cover account-table__cell">
-                      <img className="cell-cover__img" src={g.cover ? g.cover.replace("t_thumb", "t_cover_small") : "/default-cover.png"} alt={g.name} />
+                      <img
+                        className="cell-cover__img"
+                        src={
+                          g.cover
+                            ? g.cover.replace("t_thumb", "t_cover_small")
+                            : "/default-cover.png"
+                        }
+                        alt={g.name}
+                      />
                     </td>
                     <td className="cell-title account-table__cell">{g.name}</td>
-                    <td className="cell-genre account-table__cell">{g.genres && g.genres.length ? g.genres.map((x) => x.name).join(", ") : "—"}</td>
-                    <td className="cell-rating account-table__cell">{g.rating ? Math.round(g.rating) : "N/A"}</td>
-                    <td className="cell-release account-table__cell">{g.first_release_date ? new Date(g.first_release_date * 1000).getFullYear() : "—"}</td>
+                    <td className="cell-genre account-table__cell">
+                      {g.genres && g.genres.length
+                        ? g.genres.map((x) => x.name).join(", ")
+                        : "—"}
+                    </td>
+                    <td className="cell-rating account-table__cell">
+                      {g.rating ? Math.round(g.rating) : "N/A"}
+                    </td>
+                    <td className="cell-release account-table__cell">
+                      {g.first_release_date
+                        ? new Date(g.first_release_date * 1000).getFullYear()
+                        : "—"}
+                    </td>
                     <td className="cell-actions account-table__cell">
-                      <button className="btn" onClick={() => navigate(`/game/${g.id}`)}>View</button>
+                      <button
+                        className="btn"
+                        onClick={() => navigate(`/game/${g.id}`)}
+                      >
+                        View
+                      </button>
                       <button
                         className="btn btn-ghost"
                         onClick={() => {
                           removeGameFromList(profile.id, g.id);
-                          setSaved((s) => s.filter((it) => String(it.id) !== String(g.id)));
+                          showToast(`🗑️ "${g.name}" entfernt`, "warning");
+                          setSaved((s) =>
+                            s.filter((it) => String(it.id) !== String(g.id))
+                          );
                         }}
                       >
                         Entfernen
@@ -104,13 +147,8 @@ function AccountRoute() {
         )}
 
         <hr style={{ margin: "2rem 0" }} />
-
-       
-       
-
-
       </section>
-      <div style={{marginBottom:"100vh"}}></div>
+      <div style={{ marginBottom: "100vh" }}></div>
     </main>
   );
 }
